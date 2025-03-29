@@ -1,11 +1,25 @@
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+Console.WriteLine($"Using port: {port}");
+builder.WebHost.UseUrls($"http://*:{port}");
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Enable CORS
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
+
 
 var app = builder.Build();
 Console.WriteLine("Hello World! This is a test for Azure Web API.");
@@ -15,13 +29,11 @@ Console.WriteLine("Hello World! This is a test for Azure Web API.");
     app.UseSwaggerUI();
 
 
-app.UseHttpsRedirection();
 
+app.UseHttpsRedirection();
 app.UseAuthorization();
-Console.WriteLine("before port");
-var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
-app.Urls.Add($"http://*:{port}");
-Console.WriteLine("port selection issue");
+app.UseCors(); 
+
 app.MapControllers();
 
 app.Run();
