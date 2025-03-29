@@ -8,7 +8,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-
+Console.WriteLine("Hello World! This is a test for Azure Web API.");
 // Configure the HTTP request pipeline.
 
     app.UseSwagger();
@@ -18,7 +18,9 @@ var app = builder.Build();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+Console.WriteLine("before port");
 app.Urls.Add("http://*:8080");
+Console.WriteLine("port selection issue");
 app.MapControllers();
 
 app.Run();
