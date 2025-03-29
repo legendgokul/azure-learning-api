@@ -19,7 +19,8 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 Console.WriteLine("before port");
-app.Urls.Add("http://*:8080");
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+app.Urls.Add($"http://*:{port}");
 Console.WriteLine("port selection issue");
 app.MapControllers();
 
