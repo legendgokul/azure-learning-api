@@ -52,3 +52,10 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+/.vs
+/azure-webapi/.vs
+/azure-webapi/.config
+/azure-webapi/publish
+/azure-webapi/Properties/PublishProfiles
+/azure-webapi/Properties/ServiceDependencies/azure-learning-api - Web Deploy
+/azure-webapi/azure-webapi.csproj.user
