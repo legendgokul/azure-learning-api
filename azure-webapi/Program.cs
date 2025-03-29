@@ -19,7 +19,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
+app.Urls.Add("http://*:8080");
 app.MapControllers();
 
 app.Run();
