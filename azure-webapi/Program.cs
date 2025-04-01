@@ -25,7 +25,7 @@ if (!string.IsNullOrEmpty(keyVaultUri))
     }
 }
 
-// Code to fetch appinsights connection string from keyVault.
+/*// Code to fetch appinsights connection string from keyVault.
 var appInsightsConnectionString = builder.Configuration[builder.Configuration["AzureKeyVault:appInsights"]];
 
 if (!string.IsNullOrEmpty(appInsightsConnectionString))
@@ -39,12 +39,13 @@ if (!string.IsNullOrEmpty(appInsightsConnectionString))
     {
         log.AddApplicationInsights();
         log.AddFilter<ApplicationInsightsLoggerProvider>("", LogLevel.Information);
+        log.AddConsole();
     });
 }
 else
 {
     Console.WriteLine("Application Insights connection string is not configured.");
-}
+}*/
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
